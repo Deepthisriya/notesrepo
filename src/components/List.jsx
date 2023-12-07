@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import listServices from '../services/apiservice'
 import { useNavigate } from 'react-router-dom';
+import {
+Table,
+TableBody,
+TableContainer,
+TableCell,
+TableHead,
+TableRow,
+Paper,
+Button,
+Typography
 
 
+} from '@mui/material'
+import { EditRounded, DeleteOutlined } from '@mui/icons-material'
 const List = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const [getList, setList] = useState([])
-    
+
     const [error, setError] = useState(null);
 
     const apiResp = async () => {
@@ -21,10 +33,10 @@ const List = () => {
     }, [])
     console.log("getlist", getList)
 
-    
+
     const updateItem = async (id) => {
         try {
-           
+
             navigate(`/add/${id}`)
         } catch (error) {
             console.error("Error updating item:", error);
@@ -41,53 +53,42 @@ const List = () => {
     }
     return (
         <div>
-            <h1> Notes Data</h1>
+            <h1 style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}> Notes Data</h1>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <table   style={{marginTop:"20px"}}>
-                    <tr >
-                        <th >Title</th>
-                        <th>Description</th>
-                        <th>Actions</th>
 
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell style={{ fontWeight: "bold" }}>Title</TableCell>
+                                <TableCell style={{ fontWeight: "bold" }}>Description</TableCell>
+                                <TableCell style={{ fontWeight: "bold" }}>Update</TableCell>
+                                <TableCell style={{ fontWeight: "bold" }}>Delete</TableCell>
 
-                    </tr>
-                    {getList?.map((item) => (
-                        <>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {getList?.map((item) => (
+                                <TableRow
+                                    key={item._id}
+                                >
+                                    <TableCell >
+                                        {item.title}
+                                    </TableCell>
+                                    <TableCell >{item.comment}</TableCell>
 
-                            <tr key={item._id} >
-                                <td >{item?.title}</td>
-                                <td>{item?.comment}</td>
-                                <button onClick={() => updateItem(item._id)} style={{
-                                    backgroundColor:'#99ff99',                               
-                                    
-                                padding:"5px",
-                                marginLeft:'2px',
-                                
-                               
-                                }}>
-                                    Update
-                                </button>
-                                
-                                <button onClick={() => deleteNote(item._id)} 
-                                style={{backgroundColor:' #ff8080',
-                                // color:'white',
-                                padding:"5px",
-                                marginLeft:'5px',
-                               
-                            }}
-                                >Delete</button>
+                                    <TableCell > <EditRounded onClick={() => updateItem(item._id)} style={{ color: '#668cff' }} /> </TableCell>
+                                    <TableCell> <DeleteOutlined onClick={() => deleteNote(item._id)} style={{ color: '#ff8080' }} /></TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
-                            </tr>
-
-
-                        </>
-                    ))}
-                </table>
-                
             </div>
-            
+
         </div>
-        
+
     )
 }
 
