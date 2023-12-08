@@ -13,6 +13,8 @@ import {
   InputAdornment
 } from '@mui/material'
 import { Label } from '@mui/icons-material';
+import './Form.css'
+
 const Form = () => {
   const navigate = useNavigate()
   const [getList, setList] = useState([])
@@ -112,51 +114,52 @@ const Form = () => {
           flexDirection: 'column',
           alignItems: 'center',
           width: '350px',
+          height: '320px',
           margin: ' 100px auto',
-          backgroundColor: '#b3d1ff',
+          backgroundColor: 'white',
+          borderRadius: '10px',
 
         }}
 
       >
         <h4 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontWeight: 'normal' }} >{id ? "Update Note" : "Add Note"}</h4>
-        <TextField
+        <label className="title">Title</label> 
+        <br/>
+        <input
           margin="normal"
-          // required
+          required
           fullWidth
           id="title"
-          label="title"
+          // label="title"
           name="title"
-
-          sx={{ m: 1, width: '25ch' }}
+          className='Title'
+          // sx={{ m: 1, width: '5ch' }}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder='title'
+          placeholder='Title'
           variant='filled'
-          style={{ backgroundColor: 'white', width: 'auto' }}
+          // style={{ backgroundColor: 'white', width: 'auto',height: "0.4375em" }}
 
         />
-
-        <TextField
+        <label className="Description">Description</label>
+        <input
           margin="normal"
           required
           fullWidth
           name="comment"
-          label="Description"
+          className='description'
+          // label="Description"
           type="comment"
           id="comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder='description'
+          placeholder='Description'
           variant='filled'
-          style={{ backgroundColor: 'white', width: 'auto' }}
+          // style={{ backgroundColor: 'white', width: 'auto' }}
         />
-        <Button type='submit' style={{ margin: 15, padding: 8, backgroundColor: id ? "orange" : "#00b300", color: "white" }} onClick={sendPostApi}>{id ? "Update" : "Create"} </Button>
+        <Button type='submit' style={{ margin: 45, padding: 8, width: "29ch" ,backgroundColor: id ? "#00b300" : "#00b300", color: "white" }} onClick={sendPostApi}>{id ? "Update" : "Create"} </Button>
       </Box>
     </div>
-
-
-
-
   )
 }
 

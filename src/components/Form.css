@@ -1,0 +1,36 @@
+body{
+    background-color: lightblue;
+}
+.title {
+  position: relative;
+  padding: 5px;
+  left: -92px;
+  top: 5px;
+  font-size: large;
+  color: rgba(9, 8, 8, 0.996);
+}
+.Description{
+    position: relative;
+    padding: 5px;
+    left: -65px;
+    top: 5px;
+    font-size: large;
+    color: rgba(9, 8, 8, 0.996);
+}
+.Title{
+    border-radius: 3px;
+    width: 215px;
+    height: 30px;
+    background-color: rgb(234, 234, 234);
+    border: white;
+}
+.description{
+    border-radius: 3px;
+    width: 215px;
+    height: 30px;
+    background-color: rgb(234, 234, 234);
+    border: white;
+    position: relative;
+    top: 13px;
+
+}
